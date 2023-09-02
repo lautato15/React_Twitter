@@ -29,7 +29,7 @@ function UsersList() {
             </li>
           ))}
         </ul> */}
-      <h1>Esta es la home </h1>
+      <h1>Esta es la home</h1>
     </div>
   );
   /* ); */
