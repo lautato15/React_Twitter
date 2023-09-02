@@ -9,7 +9,7 @@ function UsersList() {
     const getUsers = async () => {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:8000/users",
+        url: "http://localhost:3000/users",
         headers: {
           Authorization: "Bearer " + (user && user.token),
         },
@@ -20,18 +20,19 @@ function UsersList() {
   }, []);
 
   return (
-    users.length > 0 && (
-      <div>
-        <ul className="list-group">
+    /*  users.length > 0 && ( */
+    <div>
+      {/* <ul className="list-group">
           {users.map((user) => (
             <li key={user.id} className="list-group-item">
               {user.firstname}
             </li>
           ))}
-        </ul>
-      </div>
-    )
+        </ul> */}
+      <h1>Esta es la home </h1>
+    </div>
   );
+  /* ); */
 }
 
 export default UsersList;
