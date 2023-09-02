@@ -8,7 +8,7 @@ function Home() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!user) return navigate("/iniciar-sesion");
+    if (!user) return navigate("/login");
   }, []);
 
   return (
