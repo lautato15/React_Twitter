@@ -9,9 +9,9 @@ function Home() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   if (!user) return navigate("/login");
-  // }, []);
+  useEffect(() => {
+    if (!user) return navigate("/login");
+  }, []);
 
   return (
     <div className="bodyHome">

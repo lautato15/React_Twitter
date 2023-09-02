@@ -17,17 +17,18 @@ function Login() {
       method: "POST",
       data: { password, username },
     });
-    //console.log(response.data.token);
+    console.log(response.data.error);
     if (response.data.token) {
       dispatch(login(response.data));
       navigate("/");
-    } else {
-      navigate("/errorPage?msg=Error en login");
+    } else if (response.data.error) {
+      navigate(`/error404/${response.data.error}`);
     }
   };
 
   return (
     <div className="body-login-sign">
+      {/* FLASH */}
       {/* <% if (messages.error) { %>
       <div className="alert alert-danger"><%= messages.error %></div>
       <% } %> */}
@@ -46,27 +47,29 @@ function Login() {
 
           <div className="col-sm-12 col-md-8 col-lg-5 text-start sign-div borderRoundedCol my-5 p-3 justify-content-center align-items-center">
             <div className="m-5">
-              <div m-0>
-                <h4 className="mb-1 mt-4 sign-up-login-title">Test2</h4>
+              <div className="m-0">
+                <h4 className="mb-1 mt-4 sign-up-login-title">Login</h4>
                 <p className="little-text">Ready to start using Twitter?</p>
-                <form action="/login" method="post">
+                <form action="/login" method="post" onSubmit={handleSubmit}>
                   <div className="nada">
-                    <label for="email" className="form-label"></label>
+                    <label htmlFor="email" className="form-label"></label>
                     <input
                       type="text"
-                      placeholder="Username or email"
+                      name="username"
+                      id="username"
                       className="form-control"
-                      id="email"
-                      name="email"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
-                    <label for="firstName" className="form-label"></label>
-                    <label for="password" className="form-label"></label>
+                    <label htmlFor="firstName" className="form-label"></label>
+                    <label htmlFor="password" className="form-label"></label>
                     <input
                       type="password"
-                      placeholder="Password"
-                      className="form-control"
-                      id="password"
                       name="password"
+                      id="password"
+                      value={password}
+                      className="form-control"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <br />
@@ -88,47 +91,7 @@ function Login() {
         </div>
       </div>
     </div>
-
-    // <div className="mt-4 rounded shadow p-4 container">
-    //   <h1>Login</h1>
-    //   <form action="" onSubmit={handleSubmit}>
-    //     <div className="mb-3">
-    //       <label htmlFor="username" className="form-label">
-    //         Username
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="username"
-    //         id="username"
-    //         className="form-control"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="mb-3">
-    //       <label htmlFor="password" className="form-label">
-    //         Password
-    //       </label>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         id="password"
-    //         value={password}
-    //         className="form-control"
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //     </div>
-    //     <button type="submit" className="btn btn-success">
-    //       Entrar
-    //     </button>
-    //   </form>
-    // </div>
   );
 }
 
 export default Login;
-
-
-
- 
-
