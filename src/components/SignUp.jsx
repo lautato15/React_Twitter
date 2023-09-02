@@ -19,7 +19,7 @@ function SignUp() {
               alt="Twitter Logo"
             />
             <h2 className="mt-auto login-sign-up-tittle text-start align-self-start">
-              Hi! Welcome to Twitter
+              Hi!!! Welcome to Twitter
             </h2>
           </div>
 
