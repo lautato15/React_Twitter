@@ -5,6 +5,7 @@ import Register from "./components/SignUp";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
+import Following from "./components/Following";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/following" element={<Following />} />
       </Routes>
     </>
   );
