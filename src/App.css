@@ -1,284 +1,282 @@
 /* Colocar aquí CSS "propio". */
 body {
-    height: 100vh;
-  }
-  a {
-    text-decoration: none;
-  }
-  /* CSS Font Size */
-  .txtLg {
-    font-size: 1.2rem;
-  }
-  .txtMd {
-    font-size: 1rem;
-  }
-  .txtSm {
-    font-size: 0.8rem;
-  }
-  /* CSS ALL */
-  .buttonFollow {
-    background-color: #1d9bf0;
-    color: white;
-    width: 79px;
-    height: 32px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .buttonFollow:hover {
-    background-color: #47a8e9;
-  }
-  
-  .permissionsModal:hover {
-    background-color: rgb(237, 237, 237);
-    padding: 5px;
-    border-radius: 75px;
-  }
-  
-  .iconXL {
-    width: 52px;
-    height: 52px;
-  }
-  
-  /* CSS Home */
-  .bodyHome {
-    height: 100vh;
-  }
-  .homeContainer {
-    height: 100%;
-  }
-  .homeRow {
-    height: 100%;
-  }
-  .buttonTweetHome {
-    height: 37px;
-    width: 76px;
-    background-color: #1d9bf0;
-    color: white;
-  }
-  .buttonTweetHome:hover {
-    background-color: #198bd7;
-    color: white;
-  }
-  
-  .inputTweet {
-    width: 100%;
-  }
-  .usernameTweetText {
-    color: #647788;
-  }
-  .iconLike {
-    height: 20px;
-    width: 20px;
-  }
-  
-  /* CSS Sidebar Left */
-  .sidebarContainer {
-    height: 100%;
-  }
-  .sidebarPositionDiv {
-    position: fixed;
-    height: 100vh;
-  }
-  .sidebarLeftLogo {
-    height: 28px;
-    width: 28px;
-  }
-  .sidebarLeftImages {
-    height: 22px;
-    width: 22px;
-  }
-  .sidebarLeftBtnTweet {
-    height: 52px;
-    background-color: #1d9bf0;
-    color: white;
-  }
-  .sidebarLeftBtnTweetText:hover {
-    background-color: #198bd7;
-    color: white;
-  }
-  .sidebarLeftBtnLogout {
-    height: 52px;
-    background-color: #dc3545;
-    color: white;
-  }
-  .sidebarLeftBtnLogoutText:hover {
-    background-color: red;
-    color: white;
-  }
-  
-  .sidebarLeftBtnTweetMini {
-    height: 52px;
-    width: 52px;
-    background-color: #1d9bf0;
-  }
-  .sidebarLeftBtnLogoutMini {
-    height: 52px;
-    width: 52px;
-  }
-  
-  .iconAccount {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-  }
-  
-  .followUnderLine {
-    border-bottom: 3px solid #1d9bf0;
-  }
-  
-  .followSection {
-    height: 100%;
-  }
-  
-  /* CSS Profile */
-  .divProfile {
-    position: relative;
-    height: 170px;
-    width: 100%;
-    object-fit: cover;
-  }
-  .imgProfile {
-    width: 132px;
-    height: 132px;
-    position: absolute;
-    left: 20px;
-    bottom: -65px;
-    border-radius: 75px;
-  }
-  .TweetProfile {
-    border-bottom: 3px #1d9bf0 solid;
-    display: inline;
-    width: max-content;
-    padding: 0px;
-    margin: 0px;
-    margin-left: 10px;
-  }
-  .buttonEditProfile {
-    background-color: #1d9bf0;
-    color: white;
-    width: 120px;
-    height: 32px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .buttonEditProfile:hover {
-    background-color: #198bd7;
-    color: white;
-  }
-  /* CSS Login - Sign Up */
-  .body-login-sign {
-    background-color: #647788;
-  }
-  .login-sign-up {
-    background-color: #14171a;
-  }
-  
-  .top-left {
-    flex: start;
-  }
-  .sign-up-login-title {
-    font: bold;
-    color: black;
-  }
-  .left-div {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
+  height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+/* CSS Font Size */
+.txtLg {
+  font-size: 1.2rem;
+}
+.txtMd {
+  font-size: 1rem;
+}
+.txtSm {
+  font-size: 0.8rem;
+}
+/* CSS ALL */
+.buttonFollow {
+  background-color: #1d9bf0;
+  color: white;
+  width: 79px;
+  height: 32px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonFollow:hover {
+  background-color: #47a8e9;
+}
+
+.permissionsModal:hover {
+  background-color: rgb(237, 237, 237);
+  padding: 5px;
+  border-radius: 75px;
+}
+
+.iconXL {
+  width: 52px;
+  height: 52px;
+}
+
+/* CSS Home */
+.bodyHome {
+  height: 100vh;
+}
+.homeContainer {
+  height: 100%;
+}
+.homeRow {
+  height: 100%;
+}
+.buttonTweetHome {
+  height: 37px;
+  width: 76px;
+  background-color: #1d9bf0;
+  color: white;
+}
+.buttonTweetHome:hover {
+  background-color: #198bd7;
+  color: white;
+}
+
+.inputTweet {
+  width: 100%;
+}
+.usernameTweetText {
+  color: #647788;
+}
+.iconLike {
+  height: 20px;
+  width: 20px;
+}
+
+/* CSS Sidebar Left */
+.sidebarContainer {
+  height: 100%;
+}
+.sidebarPositionDiv {
+  position: fixed;
+  height: 100vh;
+}
+.sidebarLeftLogo {
+  height: 28px;
+  width: 28px;
+}
+.sidebarLeftImages {
+  height: 22px;
+  width: 22px;
+}
+.sidebarLeftBtnTweet {
+  height: 52px;
+  background-color: #1d9bf0;
+  color: white;
+}
+.sidebarLeftBtnTweetText:hover {
+  background-color: #198bd7;
+  color: white;
+}
+.sidebarLeftBtnLogout {
+  height: 52px;
+  background-color: #dc3545;
+  color: white;
+}
+.sidebarLeftBtnLogoutText:hover {
+  background-color: red;
+  color: white;
+}
+
+.sidebarLeftBtnTweetMini {
+  height: 52px;
+  width: 52px;
+  background-color: #1d9bf0;
+}
+.sidebarLeftBtnLogoutMini {
+  height: 52px;
+  width: 52px;
+}
+
+.iconAccount {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.followUnderLine {
+  border-bottom: 3px solid #1d9bf0;
+}
+
+.followSection {
+  height: 100%;
+}
+
+/* CSS Profile */
+.divProfile {
+  position: relative;
+  height: 170px;
+  width: 100%;
+  object-fit: cover;
+}
+.imgProfile {
+  width: 132px;
+  height: 132px;
+  position: absolute;
+  left: 20px;
+  bottom: -65px;
+  border-radius: 75px;
+}
+.TweetProfile {
+  border-bottom: 3px #1d9bf0 solid;
+  display: inline;
+  width: max-content;
+  padding: 0px;
+  margin: 0px;
+  margin-left: 10px;
+}
+.buttonEditProfile {
+  background-color: #1d9bf0;
+  color: white;
+  width: 120px;
+  height: 32px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonEditProfile:hover {
+  background-color: #198bd7;
+  color: white;
+}
+/* CSS Login - Sign Up */
+.body-login-sign {
+  background-color: #647788;
+}
+.login-sign-up {
+  background-color: #14171a;
+}
+
+.top-left {
+  flex: start;
+}
+.sign-up-login-title {
+  font: bold;
+  color: black;
+}
+.left-div {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.borderRoundedCol {
+  background-color: #14171a;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+@media (max-width: 767px) {
   .borderRoundedCol {
-    background-color: #14171a;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
   }
-  @media (max-width: 767px) {
-    .borderRoundedCol {
-      border-radius: 10px;
-    }
-  }
-  .login-sign-up-tittle {
-    color: white;
-    align-items: flex-start;
-    justify-content: left;
-    bottom: 60px;
-    left: 50px;
-  }
-  .sign-div {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  .signLogButton {
-    background-color: #1d9bf0;
-    font-weight: 500;
-    font-size: medium;
-  }
-  
-  .signLogButton:hover {
-    background-color: #2286c8;
-  }
-  
-  .imageLoginSign {
-    height: 61px;
-    width: 61px;
-  }
-  .loginSignIn {
-    justify-content: flex-start;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  .little-text {
-    font-size: smaller;
-  }
-  
-  .imageLoginSign {
-    top: 0;
-    left: 0;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .row-login-sign {
-    height: 90vh;
-  }
-  /* CSS Following- Followers */
-  .buttonFollowing {
-    width: 105px;
-    height: 32px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-  }
-  .buttonFollowing:hover {
-    border: red solid 2px;
-    font-weight: bold;
-    color: red;
-  }
-  .followingDiv:hover {
-    background-color: rgb(237, 237, 237);
-  }
-  
-  /* Modal */
-  .custom-textarea {
-    width: 85%;
-    height: 100%;
-    resize: none;
-  }
-  
-  
-  .modal-lg {
-    max-width: 30%; 
-  }
-  
+}
+.login-sign-up-tittle {
+  color: white;
+  align-items: flex-start;
+  justify-content: left;
+  bottom: 60px;
+  left: 50px;
+}
+.sign-div {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.signLogButton {
+  background-color: #1d9bf0;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.signLogButton:hover {
+  background-color: #2286c8;
+}
+
+.imageLoginSign {
+  height: 61px;
+  width: 61px;
+}
+.loginSignIn {
+  justify-content: flex-start;
+}
+
+a {
+  text-decoration: none;
+}
+
+.little-text {
+  font-size: smaller;
+}
+
+.imageLoginSign {
+  top: 0;
+  left: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.row-login-sign {
+  height: 90vh;
+}
+/* CSS Following- Followers */
+.buttonFollowing {
+  width: 105px;
+  height: 32px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+.buttonFollowing:hover {
+  border: red solid 2px;
+  font-weight: bold;
+  color: red;
+}
+.followingDiv:hover {
+  background-color: rgb(237, 237, 237);
+}
+
+/* Modal */
+.custom-textarea {
+  width: 85%;
+  height: 100%;
+  resize: none;
+}
+
+.modal-lg {
+  max-width: 30%;
+}
