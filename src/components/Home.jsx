@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import UsersList from "./UsersList";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import LikeButton from "./miniComponents/LikeButton";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 function Home() {
