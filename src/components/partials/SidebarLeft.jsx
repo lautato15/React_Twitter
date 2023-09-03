@@ -7,7 +7,7 @@ const sidebarLeft = () => {
         <div className="sidebarContainer flex-column d-flex justify-content-between">
           <div className="mt-3 flex-column d-flex">
             <div>
-              <a href="/home">
+              <a href="/">
                 <img
                   className="sidebarLeftLogo mb-4"
                   src="/twitter.png"
