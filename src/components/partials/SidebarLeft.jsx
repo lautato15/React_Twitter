@@ -1,5 +1,5 @@
 import React from "react";
-
+import Modal from "../miniComponents/Modal";
 const sidebarLeft = () => {
   return (
     <div className="col-2 container border-end d-lg-flex justify-content-center">
@@ -84,6 +84,7 @@ const sidebarLeft = () => {
             >
               <img src="/feather.png" alt="" className="img-fluid" />
             </a>
+            <Modal />
           </div>
           <a
             href="/login/logout"
