@@ -1,17 +1,35 @@
-import { useEffect } from "react";
-import UsersList from "./UsersList";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LikeButton from "./miniComponents/LikeButton";
 import Following from "./miniComponents/Following";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
+import axios from "axios";
+import { followingsTweets } from "../redux/tweetsSlice";
+
 function Home() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.logged);
+  const tweets = useSelector((state) => state.tweets.followings);
 
   useEffect(() => {
     if (!user) return navigate("/login");
+    else {
+      const getTweets = async () => {
+        const response = await axios({
+          method: "GET",
+          url: "http://localhost:3000/",
+          headers: {
+            Authorization: "Bearer " + (user && user.token),
+          },
+        });
+        console.log(response.data);
+        dispatch(followingsTweets(response.data));
+      };
+      getTweets();
+    }
   }, []);
 
   return (
@@ -25,19 +43,19 @@ function Home() {
               <div className="container py-2 d-flex flex-column border-bottom">
                 <form action="/tweet/create" method="post">
                   <div className="d-flex">
-                    {user.avatar.startsWith("http") ? (
+                    {/*  {user.avatar.startsWith("http") ? ( */}
+                    <img
+                      className="iconAccount me-2"
+                      src={`${user.avatar}`}
+                      alt="a"
+                    />
+                    {/*  ) : (
                       <img
                         className="iconAccount me-2"
                         src={`${user.avatar}`}
                         alt="a"
                       />
-                    ) : (
-                      <img
-                        className="iconAccount me-2"
-                        src={`/${user.avatar}`}
-                        alt="a"
-                      />
-                    )}
+                    )}  */}
                     <textarea
                       name="content"
                       type="text"
@@ -58,77 +76,92 @@ function Home() {
                   </div>
                 </form>
               </div>
-
-              {/* <% for (const tweet of tweets) {%> */}
-              <div className="divTweet container d-flex py-2 border-bottom">
-                <a href="/<%= tweet.author.username%>">
-                  {/* <% if (tweet.author.avatar.startsWith("http")) {%>
-              <img className="iconAccount me-2" src="<%= tweet.author.avatar %>" alt="Icon of user" />
-              <% } else{%>
-              <img
-                className="iconAccount me-2"
-                src="/img/<%= tweet.author.avatar %>"
-                alt="Icon of user"
-              />
-              <%} %> */}
-                </a>
-                <div>
-                  <div className="d-flex">
-                    <a
-                      href="/<%= tweet.author.username%>"
-                      className="text-reset txtMd fw-bold fw-semibold me-1"
-                    >
-                      {/* <%= tweet.author.fullname %> */}
+              {tweets &&
+                tweets.map((tweet) => (
+                  <div
+                    key={tweet._id}
+                    className="divTweet container d-flex py-2 border-bottom"
+                  >
+                    <a href={`${tweet.author.username}`}>
+                      {/* {tweet.author.avatar.startsWith("http") ? ( */}
+                      <img
+                        className="iconAccount me-2"
+                        src={`${tweet.author.avatar}`}
+                        alt="Icon of user"
+                      />
+                      {/* ) : ( */}
+                      {/* <img
+                            className="iconAccount me-2"
+                            src={`/${tweet.author.avatar}`}
+                            alt="Icon of user"
+                          />
+                        )} */}
                     </a>
-                    <a
-                      href="/<%= tweet.author.username%>"
-                      className="txtMd usernameTweetText mx-1"
-                    >
-                      {/* @<%= tweet.author.username %> */}
-                    </a>
+                    <div>
+                      <div className="d-flex">
+                        <a
+                          href="/<%= tweet.author.username%>"
+                          className="text-reset txtMd fw-bold fw-semibold me-1"
+                        >
+                          {tweet.author.fullname}
+                        </a>
+                        <a
+                          href={`/${tweet.author.username}`}
+                          className="txtMd usernameTweetText mx-1"
+                        >
+                          @{tweet.author.username}
+                        </a>
 
-                    <p className="txtMd usernameTweetText m-0">
-                      {/* &#8901; <%= formatDistanceToNow(tweet.createdAt) %> */}
-                    </p>
+                        <p className="txtMd usernameTweetText m-0">
+                          {/* {tweet.createdAt} */}
+                          1/11/2015
+                        </p>
+                      </div>
+                      <p className="txtMd m-0"> {tweet.content} </p>
+                      <form action="/tweet/<%= tweet.id %>/like" method="post">
+                        <input
+                          type="hidden"
+                          name="userId"
+                          value="<%= user.id %>"
+                        />
+                        <button type="submit" className="btn p-0">
+                          <img
+                            className="img-fluid iconLike d-inline"
+                            src="/heartWithe.png"
+                            alt=""
+                          />
+                          <p className="d-inline">
+                            {/* CONTADOR DE LIKES  */}
+                            {/* <%= tweet.likes.length %> */}
+                          </p>
+                        </button>
+                      </form>
+                      {/* <% } else { %> */}
+                      {/*   <form
+                          action="/tweet/<%= tweet.id %>/unLike"
+                          method="post"
+                        >
+                          <input
+                            type="hidden"
+                            name="userId"
+                            value="<%= user.id %>"
+                          />
+                          <button type="submit" className="btn p-0">
+                            <img
+                              className="img-fluid iconLike d-inline"
+                              src="/heartRed.png"
+                              alt=""
+                            />
+                            <p className="d-inline">
+                              {/* -- CONTADOR DE LIKES  */}
+                      {/* <%= tweet.likes.length %> */}
+                      {/*  </p> */}
+                      {/* </button> */}
+                      {/* </form> */}
+                      {/* <% } %> */}
+                    </div>
                   </div>
-                  {/* <p className="txtMd m-0"><%= tweet.content %></p>
-              <% if (!tweet.likes.includes(user.id)) { %> */}
-
-                  <form action="/tweet/<%= tweet.id %>/like" method="post">
-                    <input type="hidden" name="userId" value="<%= user.id %>" />
-                    <button type="submit" className="btn p-0">
-                      <img
-                        className="img-fluid iconLike d-inline"
-                        src="/heartWithe.png"
-                        alt=""
-                      />
-                      <p className="d-inline">
-                        {/* CONTADOR DE LIKES  */}
-                        {/* <%= tweet.likes.length %> */}
-                      </p>
-                    </button>
-                  </form>
-
-                  {/* <% } else { %> */}
-
-                  <form action="/tweet/<%= tweet.id %>/unLike" method="post">
-                    <input type="hidden" name="userId" value="<%= user.id %>" />
-                    <button type="submit" className="btn p-0">
-                      <img
-                        className="img-fluid iconLike d-inline"
-                        src="/heartRed.png"
-                        alt=""
-                      />
-                      <p className="d-inline">
-                        {/* -- CONTADOR DE LIKES  */}
-                        {/* <%= tweet.likes.length %> */}
-                      </p>
-                    </button>
-                  </form>
-                  {/* <% } %> */}
-                </div>
-              </div>
-              {/* <% } %> */}
+                ))}
             </div>
             <Sidebar />
           </div>
