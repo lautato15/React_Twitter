@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/:profile" element={<Profile />} />
         <Route path="/followers" element={<Followers />} />
         <Route path="/followings" element={<Followings />} />
         <Route path="/error404/:msgerror" element={<Error404 />} />

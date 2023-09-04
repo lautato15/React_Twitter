@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
-  const user = useSelector((state) => state.logged);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     const getUsers = async () => {
       const response = await axios({

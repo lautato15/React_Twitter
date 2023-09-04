@@ -17,7 +17,7 @@ function Login() {
       method: "POST",
       data: { password, username },
     });
-    console.log(response.data.error);
+    /* console.log(response.data.error); */
     if (response.data.token) {
       dispatch(login(response.data));
       navigate("/");
