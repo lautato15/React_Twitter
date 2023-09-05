@@ -25,7 +25,6 @@ function Home() {
             Authorization: "Bearer " + (user && user.token),
           },
         });
-        console.log(response.data);
         dispatch(followingsTweets(response.data));
       };
       getTweets();
