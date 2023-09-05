@@ -3,7 +3,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { NavLink, Link } from "react-router-dom";
 import Modal from "../miniComponents/Modal";
 const sidebarLeft = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.logged);
   return (
     <div className="col-2 container border-end d-lg-flex justify-content-center">
       <div className="sidebarPositionDiv d-none d-lg-flex justify-content-center">
@@ -32,7 +32,7 @@ const sidebarLeft = () => {
               <p className="txtLg m-0">Home</p>
             </NavLink>
             <NavLink
-              to={user && `/${user.username}`}
+              to={`/${user.username}`} /* Wilfrid_Goodwin */
               className="mb-4 d-flex align-items-center text-reset"
             >
               <img
@@ -74,7 +74,7 @@ const sidebarLeft = () => {
               <img className="sidebarLeftImages" src="/home.png" alt="Home" />
             </NavLink>
             <NavLink
-              to={user && `/${user.username}`}
+              to={`/${user.username}`}
               className="mb-4 d-flex align-items-center text-reset"
             >
               <img
@@ -83,12 +83,12 @@ const sidebarLeft = () => {
                 alt="Profile"
               />
             </NavLink>
-            <NavLink
+            <Link
               to={"/"}
               className="sidebarLeftBtnTweetMini btn rounded-pill txtMd fw-semibold d-flex align-items-center justify-content-center"
             >
               <img src="/feather.png" alt="" className="img-fluid" />
-            </a>
+            </Link>
           </div>
           <NavLink
             to={"/login/logout"}

@@ -6,13 +6,14 @@ import Following from "./miniComponents/Following";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
-import { followingsTweets } from "../redux/tweetsSlice";
+import { tweets, like } from "../redux/tweetsSlice";
+import { NavLink, Link } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.logged);
-  const tweets = useSelector((state) => state.tweets.followings);
+  const tweetsList = useSelector((state) => state.tweets);
 
   useEffect(() => {
     if (!user) return navigate("/login");
@@ -25,15 +26,18 @@ function Home() {
             Authorization: "Bearer " + (user && user.token),
           },
         });
-        console.log(response.data);
-        dispatch(followingsTweets(response.data));
+        dispatch(tweets(response.data.tweets));
       };
       getTweets();
     }
   }, []);
+  function handleLike(tweetId) {
+    dispatch(like({ tweetId, userId: user.id }));
+  }
 
   return (
-    user && (
+    user &&
+    tweetsList && (
       <div className="bodyHome">
         <div className="container homeContainer">
           <div className="row homeRow">
@@ -76,68 +80,76 @@ function Home() {
                   </div>
                 </form>
               </div>
-              {tweets &&
-                tweets.map((tweet) => (
-                  <div
-                    key={tweet._id}
-                    className="divTweet container d-flex py-2 border-bottom"
-                  >
-                    <a href={`${tweet.author.username}`}>
-                      {/* {tweet.author.avatar.startsWith("http") ? ( */}
-                      <img
-                        className="iconAccount me-2"
-                        src={`${tweet.author.avatar}`}
-                        alt="Icon of user"
-                      />
-                      {/* ) : ( */}
-                      {/* <img
-                            className="iconAccount me-2"
-                            src={`/${tweet.author.avatar}`}
-                            alt="Icon of user"
-                          />
-                        )} */}
-                    </a>
-                    <div>
-                      <div className="d-flex">
-                        <a
-                          href="/<%= tweet.author.username%>"
-                          className="text-reset txtMd fw-bold fw-semibold me-1"
-                        >
-                          {tweet.author.fullname}
-                        </a>
-                        <a
-                          href={`/${tweet.author.username}`}
-                          className="txtMd usernameTweetText mx-1"
-                        >
-                          @{tweet.author.username}
-                        </a>
 
-                        <p className="txtMd usernameTweetText m-0">
-                          {/* {tweet.createdAt} */}
-                          1/11/2015
-                        </p>
-                      </div>
-                      <p className="txtMd m-0"> {tweet.content} </p>
-                      <form action="/tweet/<%= tweet.id %>/like" method="post">
-                        <input
-                          type="hidden"
-                          name="userId"
-                          value="<%= user.id %>"
+              {tweetsList.map((tweet) => (
+                <div
+                  key={tweet._id}
+                  className="divTweet container d-flex py-2 border-bottom"
+                >
+                  <Link to={`/${tweet.author.username}`}>
+                    <img
+                      className="iconAccount me-2"
+                      src={`${tweet.author.avatar}`}
+                      alt="Icon of user"
+                    />
+                  </Link>
+                  <div>
+                    <div className="d-flex">
+                      <Link
+                        to={`/${tweet.author.username}`}
+                        className="text-reset txtMd fw-bold fw-semibold me-1"
+                      >
+                        {tweet.author.fullname}
+                      </Link>
+                      <Link
+                        to={`/${tweet.author.username}`}
+                        className="txtMd usernameTweetText mx-1"
+                      >
+                        @{tweet.author.username}
+                      </Link>
+
+                      <p className="txtMd usernameTweetText m-0">
+                        {/* {tweet.createdAt} */}
+                        1/11/2015
+                      </p>
+                    </div>
+                    <p className="txtMd m-0"> {tweet.content} </p>
+
+                    <form action="/tweet/<%= tweet.id %>/like" method="post">
+                      <input
+                        type="hidden"
+                        name="userId"
+                        value="<%= user.id %>"
+                      />
+                      {/*   <h2>User id: {typeof user.id}</h2>
+                        <h2>Likes: {typeof String(tweet.likes)}</h2> */}
+
+                      {!tweet.likes.some((like) => String(like) === user.id) ? (
+                        <img
+                          className="img-fluid iconLike d-inline"
+                          src="/heartWithe.png"
+                          alt=""
+                          onClick={() => handleLike(tweet.id)}
                         />
-                        <button type="submit" className="btn p-0">
-                          <img
-                            className="img-fluid iconLike d-inline"
-                            src="/heartWithe.png"
-                            alt=""
-                          />
-                          <p className="d-inline">
+                      ) : (
+                        <img
+                          className="img-fluid iconLike d-inline"
+                          src="/heartRed.png"
+                          alt=""
+                          onClick={() => handleLike(tweet.id)}
+                        />
+                      )}
+
+                      <span className="ms-2">{tweet.likes.length}</span>
+
+                      {/*<p className="d-inline ms-2">
                             {/* CONTADOR DE LIKES  */}
-                            {/* <%= tweet.likes.length %> */}
-                          </p>
-                        </button>
-                      </form>
-                      {/* <% } else { %> */}
-                      {/*   <form
+                      {/*  {tweet.likes.length} */}
+                      {/*  </p>
+                        </button> */}
+                    </form>
+                    {/* <% } else { %> */}
+                    {/*   <form
                           action="/tweet/<%= tweet.id %>/unLike"
                           method="post"
                         >
@@ -154,14 +166,14 @@ function Home() {
                             />
                             <p className="d-inline">
                               {/* -- CONTADOR DE LIKES  */}
-                      {/* <%= tweet.likes.length %> */}
-                      {/*  </p> */}
-                      {/* </button> */}
-                      {/* </form> */}
-                      {/* <% } %> */}
-                    </div>
+                    {/* { tweet.likes.length} */}
+                    {/*  </p> */}
+                    {/* </button> */}
+                    {/* </form> */}
+                    {/* <% } %> */}
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
             <Sidebar />
           </div>

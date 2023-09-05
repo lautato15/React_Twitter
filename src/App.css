@@ -172,9 +172,11 @@ a {
 /* CSS Login - Sign Up */
 .body-login-sign {
   background-color: #647788;
+  height: 100vh;
 }
 .login-sign-up {
   background-color: #14171a;
+  height: 100%;
 }
 
 .top-left {
