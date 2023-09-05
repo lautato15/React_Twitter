@@ -4,13 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
+import { tweets } from "../redux/tweetsSlice";
 import { profileShow } from "../redux/profileSlice";
 
 function Porfile(props) {
   const dispatch = useDispatch();
-  const [btnProfile, setBtnProfile] = useState("");
+  const [btnProfile, setBtnProfile] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
+  const tweetsList = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profileShow);
   const user = useSelector((state) => state.logged);
   useEffect(() => {
@@ -24,18 +26,38 @@ function Porfile(props) {
             Authorization: "Bearer " + (user && user.token),
           },
         });
-        dispatch(profileShow(response.data));
-
-        // if (user.id === profile.id) setBtnProfile("Edit Profile");
-        // else if (profile.followers.includes(user.id)) setBtnProfile("Follow");
-        // else setBtnProfile("Unfollow");
+        dispatch(tweets(response.data.tweets));
+        dispatch(profileShow(response.data.profile));
       };
       getProfile();
       if (profile) {
-        if (user.id === profile.id) setBtnProfile("Edit Profile");
-        else if (profile.followers.includes(user.id))
-          setBtnProfile("Following");
-        else setBtnProfile("Follow");
+        if (user.id === profile.id) {
+          setBtnProfile(
+            <button
+              className="buttonEditProfile btn rounded-pill txtMd"
+              /* onClick={() => navigate("/edit-profile")} */
+            >
+              Edit Profile
+            </button>
+          );
+        } else if (profile.followers.includes(user.id))
+          setBtnProfile(
+            <button
+              className="btn buttonFollowing border border-black rounded-pill"
+              /* onClick={() => navigate("/edit-profile")} */
+            >
+              Following
+            </button>
+          );
+        else
+          setBtnProfile(
+            <button
+              /* onClick={() => navigate("/edit-profile")} */
+              className="btn buttonEditProfile rounded-pill txtMd"
+            >
+              Follow
+            </button>
+          );
       }
     }
   }, [profile]);
@@ -73,7 +95,7 @@ function Porfile(props) {
                     <h2 className="txtLg mb-0 fw-bold">{profile.fullname}</h2>
                     <div className="d-flex">
                       <p className="txtMd text-secondary m-0 flex-grow-1">
-                        @ {profile.username}
+                        @ {profile.profilename}
                       </p>
                       <a
                         href="/followers/<%= userShow.id %>"
@@ -96,10 +118,11 @@ function Porfile(props) {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end mt-2">
-                    <button className="buttonEditProfile btn rounded-pill txtMd">
-                      {" "}
-                      {btnProfile}{" "}
-                    </button>
+                    {/* <button
+                      className={`buttonEditProfile btn rounded-pill txtMd`}
+                    > */}
+                    {btnProfile}
+                    {/* </button> */}
                     {/* {user.id === profile.id 
                      ? <button className="buttonEditProfile btn rounded-pill txtMd">Edit Profile</button>
                     :} */}
@@ -129,7 +152,7 @@ function Porfile(props) {
 
               )}
               for(let tweet of userShow.tweets){ %> */}
-              {profile.tweets.map((tweet) => (
+              {tweetsList.map((tweet) => (
                 <div
                   key={tweet.id}
                   className="container d-flex p-3 border-bottom"

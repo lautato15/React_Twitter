@@ -31,7 +31,7 @@ const sidebarLeft = () => {
               <p className="txtLg m-0">Home</p>
             </NavLink>
             <NavLink
-              to={`/${user.username}`}
+              to={`/${user.username}`} /* Wilfrid_Goodwin */
               className="mb-4 d-flex align-items-center text-reset"
             >
               <img
@@ -82,12 +82,12 @@ const sidebarLeft = () => {
                 alt="Profile"
               />
             </NavLink>
-            <NavLink
+            <Link
               to={"/"}
               className="sidebarLeftBtnTweetMini btn rounded-pill txtMd fw-semibold d-flex align-items-center justify-content-center"
             >
               <img src="/feather.png" alt="" className="img-fluid" />
-            </NavLink>
+            </Link>
           </div>
           <NavLink
             to={"/login/logout"}
