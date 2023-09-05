@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     logged: loggedReducer,
     tweets: tweetsReducer,
-    profile: profileReducer,
+    profileShow: profileReducer,
   },
 });
 
