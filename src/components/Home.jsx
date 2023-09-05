@@ -7,6 +7,7 @@ import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
 import { followingsTweets } from "../redux/tweetsSlice";
+import { NavLink, Link } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ function Home() {
                     key={tweet._id}
                     className="divTweet container d-flex py-2 border-bottom"
                   >
-                    <a href={`${tweet.author.username}`}>
+                    <Link to={`/${tweet.author.username}`}>
                       {/* {tweet.author.avatar.startsWith("http") ? ( */}
                       <img
                         className="iconAccount me-2"
@@ -96,15 +97,15 @@ function Home() {
                             alt="Icon of user"
                           />
                         )} */}
-                    </a>
+                    </Link>
                     <div>
                       <div className="d-flex">
-                        <a
-                          href="/<%= tweet.author.username%>"
+                        <Link
+                          to={`/${tweet.author.username}`}
                           className="text-reset txtMd fw-bold fw-semibold me-1"
                         >
                           {tweet.author.fullname}
-                        </a>
+                        </Link>
                         <a
                           href={`/${tweet.author.username}`}
                           className="txtMd usernameTweetText mx-1"

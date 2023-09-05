@@ -31,15 +31,15 @@ function Porfile(props) {
         // else setBtnProfile("Unfollow");
       };
       getProfile();
-    }
-  }, []);
-  useEffect(() => {
-    if (profile) {
-      if (user.id === profile.id) setBtnProfile("Edit Profile");
-      else if (profile.followers.includes(user.id)) setBtnProfile("Follow");
-      else setBtnProfile("Unfollow");
+      if (profile) {
+        if (user.id === profile.id) setBtnProfile("Edit Profile");
+        else if (profile.followers.includes(user.id))
+          setBtnProfile("Following");
+        else setBtnProfile("Follow");
+      }
     }
   }, [profile]);
+
   return (
     user &&
     profile && (
