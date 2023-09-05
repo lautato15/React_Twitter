@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 
 function Porfile(props) {
+  const params = useParams();
   const [name, setName] = useState(null);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.logged);
 
   /*  useEffect(() => {
     if (!user) return navigate("/login");
@@ -35,7 +36,7 @@ function Porfile(props) {
             <div className="d-flex flex-column-reverse border-bottom">
               <h2 className="container txtLg TweetProfile">Tweets</h2>
               <div className="container">
-                <p>{/* {<%= userShow.biography %>} */}</p>
+                <p>{user.biography}</p>
               </div>
               <div className="container py-2 d-flex flex-column-reverse">
                 <div className="mt-5">
@@ -130,7 +131,7 @@ function Porfile(props) {
                     <button type="submit" className="btn p-0">
                       <img
                         className="img-fluid iconLike d-inline"
-                        src="/img/heartWithe.png"
+                        src="heartWithe.png"
                         alt=""
                       />
                       <p className="d-inline">
@@ -140,7 +141,7 @@ function Porfile(props) {
                     </button>
                   </form>
                   {/*  {<% } else { %>/*}  */}
-                  */{" "}
+
                   <form
                     className="d-flex justify-content-center align-items-center"
                     action="/tweet/<%= tweet.id %>/unLike"
@@ -150,7 +151,7 @@ function Porfile(props) {
                     <button type="submit" className="btn p-0">
                       <img
                         className="img-fluid iconLike d-inline"
-                        src="/img/heartRed.png"
+                        src="heartRed.png"
                         alt=""
                       />
                       <p className="d-inline">

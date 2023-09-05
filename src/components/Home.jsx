@@ -76,6 +76,7 @@ function Home() {
                   </div>
                 </form>
               </div>
+
               {tweets &&
                 tweets.map((tweet) => (
                   <div
