@@ -1,15 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SignUp() {
   const [firstname, setFirstname] = useState("");
-  const [age, setAge] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    console.log("Llegamos");
+    e.preventDefault();
+    const response = await axios({
+      url: "http://localhost:3000/signup",
+      method: "POST",
+      data: { firstname, lastname, email, username, password },
+    });
+    console.log(response.data);
+    navigate("/login");
+  };
+
   return (
     <div className="body-login-sign">
-      {/* <% if (messages.errorMessage) { %>
-        <div className="alert alert-danger"><%= messages.errorMessage %></div>
-        <% } %> */}
       <div className="container">
         <div className="row row-login-sign">
           <div className="d-none d-sm-none d-none d-sm-flex d-md-flex col-md-4 col-lg-7 left-div my-4 login-sign-up flex-column p-4 flex-column">
@@ -35,12 +48,9 @@ function SignUp() {
                 <p className="txtSm m-0">
                   Create an account and start using Twitter
                 </p>
-                <form
-                  action="/signup"
-                  method="post"
-                  enctype="multipart/form-data"
-                >
+                <form>
                   <div>
+                    <label htmlFor="firstname">{firstname}</label>
                     <input
                       type="text"
                       placeholder="First name"
@@ -48,9 +58,11 @@ function SignUp() {
                       id="firstname"
                       name="firstname"
                       required
+                      onChange={(e) => setFirstname(e.target.value)}
                     />
                   </div>
                   <div>
+                    <label htmlFor="lastname">{lastname}</label>
                     <input
                       type="text"
                       placeholder="Last name"
@@ -58,9 +70,11 @@ function SignUp() {
                       id="lastname"
                       name="lastname"
                       required
+                      onChange={(e) => setLastname(e.target.value)}
                     />
                   </div>
                   <div>
+                    <label htmlFor="email">{email}</label>
                     <input
                       type="email"
                       placeholder="Email"
@@ -68,9 +82,11 @@ function SignUp() {
                       id="email"
                       name="email"
                       required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
+                    <label htmlFor="username">{username}</label>
                     <input
                       type="text"
                       placeholder="Username"
@@ -78,10 +94,11 @@ function SignUp() {
                       id="username"
                       name="username"
                       required
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label for="avatar">Foto de usuario</label>
+                    <label htmlFor="avatar">Foto de usuario</label>
                     <input
                       type="file"
                       className="form-control my-3"
@@ -90,7 +107,7 @@ function SignUp() {
                     />
                   </div>
                   <div>
-                    <label for="frontPage">Portada</label>
+                    <label htmlFor="frontPage">Portada</label>
                     <input
                       type="file"
                       className="form-control my-3"
@@ -99,6 +116,7 @@ function SignUp() {
                     />
                   </div>
                   <div>
+                    <label htmlFor="password">{password}</label>
                     <input
                       type="password"
                       placeholder="Password"
@@ -106,13 +124,14 @@ function SignUp() {
                       id="password"
                       name="password"
                       required
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <br />
                   <div className="d-grid gap-1">
                     <button
                       className="btn btn-primary rounded-pill btn-lg signLogButton"
-                      type="submit"
+                      onClick={handleSubmit}
                     >
                       Sign up
                     </button>
@@ -127,67 +146,6 @@ function SignUp() {
         </div>
       </div>
     </div>
-
-    // <div className="mt-4 rounded shadow p-4 container">
-    //   <h1>Registro de usuario</h1>
-    //   <form action="">
-    //     <div className="mb-3">
-    //       <label htmlFor="firstname" className="form-label">
-    //         Nombre
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="firstname"
-    //         id="firstname"
-    //         className="form-control"
-    //         value={firstname}
-    //         onChange={(e) => setFirstname(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="mb-3">
-    //       <label htmlFor="age" className="form-label">
-    //         Edad
-    //       </label>
-    //       <input
-    //         type="number"
-    //         name="age"
-    //         id="age"
-    //         className="form-control"
-    //         value={age}
-    //         onChange={(e) => setAge(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="mb-3">
-    //       <label htmlFor="username" className="form-label">
-    //         Username
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="username"
-    //         id="username"
-    //         className="form-control"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="mb-3">
-    //       <label htmlFor="password" className="form-label">
-    //         Password
-    //       </label>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         id="password"
-    //         value={password}
-    //         className="form-control"
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //     </div>
-    //     <button type="submit" className="btn btn-success">
-    //       Registar
-    //     </button>
-    //   </form>
-    // </div>
   );
 }
 

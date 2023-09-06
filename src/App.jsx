@@ -8,11 +8,12 @@ import SignUp from "./components/SignUp";
 import Followings from "./components/Followings";
 import Followers from "./components/followers";
 import Error404 from "./components/error404";
+
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SignUp />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/:profile" element={<Profile />} />
