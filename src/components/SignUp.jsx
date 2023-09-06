@@ -25,7 +25,7 @@ function SignUp() {
     <div className="body-login-sign">
       <div className="container">
         <div className="row row-login-sign">
-          <div className="d-none d-sm-none d-none d-sm-flex d-md-flex col-md-4 col-lg-7 left-div my-4 login-sign-up flex-column p-4 flex-column">
+          <div className="d-none d-sm-none d-none d-sm-flex d-md-flex col-md-4 col-lg-7 left-div my-5 login-sign-up flex-column p-4 flex-column">
             <img
               className="imageLoginSign"
               src="/twitter.png"
@@ -36,13 +36,13 @@ function SignUp() {
             </h2>
           </div>
 
-          <div className="col-sm-12 col-md-8 col-lg-5 text-start sign-div borderRoundedCol my-4">
+          <div className="col-sm-12 col-md-8 col-lg-5 text-start sign-div borderRoundedCol my-5">
             <img
               className="d-block d-md-none imageLoginSign mt-2 ms-1"
               src="/twitter.png"
               alt="Twitter Logo"
             />
-            <div className="m-5 px-3">
+            <div className="px-3">
               <div>
                 <h4 className="mb-1 fw-bold txtXxl">Sign up</h4>
                 <p className="txtSm m-0">
@@ -54,7 +54,7 @@ function SignUp() {
                     <input
                       type="text"
                       placeholder="First name"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="firstname"
                       name="firstname"
                       required
@@ -66,7 +66,7 @@ function SignUp() {
                     <input
                       type="text"
                       placeholder="Last name"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="lastname"
                       name="lastname"
                       required
@@ -78,7 +78,7 @@ function SignUp() {
                     <input
                       type="email"
                       placeholder="Email"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="email"
                       name="email"
                       required
@@ -90,7 +90,7 @@ function SignUp() {
                     <input
                       type="text"
                       placeholder="Username"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="username"
                       name="username"
                       required
@@ -101,7 +101,7 @@ function SignUp() {
                     <label htmlFor="avatar">Foto de usuario</label>
                     <input
                       type="file"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="avatar"
                       name="avatar"
                     />
@@ -110,7 +110,7 @@ function SignUp() {
                     <label htmlFor="frontPage">Portada</label>
                     <input
                       type="file"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="frontPage"
                       name="frontPage"
                     />
@@ -120,7 +120,7 @@ function SignUp() {
                     <input
                       type="password"
                       placeholder="Password"
-                      className="form-control my-3"
+                      className="form-control mb-3"
                       id="password"
                       name="password"
                       required
