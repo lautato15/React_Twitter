@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { profileShow } from "../redux/profileSlice";
 import TweetsList from "./TweetsList";
 
 function Porfile(props) {
+  const location = useLocation();
   const dispatch = useDispatch();
   const [btnProfile, setBtnProfile] = useState(null);
   const params = useParams();
@@ -61,7 +62,7 @@ function Porfile(props) {
           );
       }
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     user &&
@@ -98,24 +99,24 @@ function Porfile(props) {
                       <p className="txtMd text-secondary m-0 flex-grow-1">
                         @ {profile.profilename}
                       </p>
-                      <a
-                        href="/followers/<%= userShow.id %>"
+                      <Link
+                        to={`/${user.username}/followers`}
                         className="txtSm text-secondary"
                       >
                         <span className="text-dark fw-bold">
                           {profile.followers.length}
                         </span>
                         Followers
-                      </a>
-                      <a
-                        href="/followings/<%= userShow.id %>"
+                      </Link>
+                      <Link
+                        to={`/${user.username}/followings`}
                         className="txtSm text-secondary"
                       >
                         <span className="text-dark fw-bold ms-2">
                           {profile.followings.length}
                         </span>
                         Followings
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="d-flex justify-content-end mt-2">
