@@ -8,16 +8,29 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [frontpage, setFrontpage] = useState(null);
+  const formData = new FormData();
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    console.log("Llegamos");
     e.preventDefault();
-    const response = await axios({
-      url: "http://localhost:3000/signup",
+    formData.set("firstname", firstname);
+    formData.set("lastname", lastname);
+    formData.set("email", email);
+    formData.set("username", username);
+    formData.set("password", password);
+    formData.set("avatar", avatar);
+    /* formData.set("frontpage", frontpage); */
+
+    await axios({
       method: "POST",
-      data: { firstname, lastname, email, username, password },
+      url: "http://localhost:3000/signup",
+      data: formData,
+      headers: { "Content-Type": "multipart/from-data" },
     });
-    console.log(response.data);
+    /* console.log(response.data); */
+    console.log("LLEGAMOS");
     navigate("/login");
   };
 
@@ -48,9 +61,9 @@ function SignUp() {
                 <p className="txtSm m-0">
                   Create an account and start using Twitter
                 </p>
-                <form>
+                <form method="post" encType="multipart/form-data">
                   <div>
-                    <label htmlFor="firstname">{firstname}</label>
+                    <label htmlFor="firstname">Nombre</label>
                     <input
                       type="text"
                       placeholder="First name"
@@ -58,11 +71,12 @@ function SignUp() {
                       id="firstname"
                       name="firstname"
                       required
+                      value={firstname}
                       onChange={(e) => setFirstname(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastname">{lastname}</label>
+                    <label htmlFor="lastname">Apellido</label>
                     <input
                       type="text"
                       placeholder="Last name"
@@ -70,11 +84,12 @@ function SignUp() {
                       id="lastname"
                       name="lastname"
                       required
+                      value={lastname}
                       onChange={(e) => setLastname(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label htmlFor="email">{email}</label>
+                    <label htmlFor="email">Email</label>
                     <input
                       type="email"
                       placeholder="Email"
@@ -82,11 +97,12 @@ function SignUp() {
                       id="email"
                       name="email"
                       required
+                      value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label htmlFor="username">{username}</label>
+                    <label htmlFor="username">Nombre de usuario</label>
                     <input
                       type="text"
                       placeholder="Username"
@@ -94,6 +110,7 @@ function SignUp() {
                       id="username"
                       name="username"
                       required
+                      value={username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
@@ -104,27 +121,30 @@ function SignUp() {
                       className="form-control mb-3"
                       id="avatar"
                       name="avatar"
+                      onChange={(e) => setAvatar(e.target.files[0])}
                     />
                   </div>
-                  <div>
+                  {/*  <div>
                     <label htmlFor="frontPage">Portada</label>
                     <input
                       type="file"
                       className="form-control mb-3"
-                      id="frontPage"
-                      name="frontPage"
+                      id="frontpage"
+                      name="frontpage"
+                      onChange={(e) => setFrontpage(e.target.files[0])}
                     />
-                  </div>
+                  </div> */}
                   <div>
-                    <label htmlFor="password">{password}</label>
+                    <label htmlFor="password">Contraseña</label>
                     <input
                       type="password"
                       placeholder="Password"
                       className="form-control mb-3"
                       id="password"
                       name="password"
-                      required
+                      value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                   </div>
                   <br />
