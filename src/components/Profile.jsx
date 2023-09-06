@@ -6,6 +6,7 @@ import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
 import { tweets } from "../redux/tweetsSlice";
 import { profileShow } from "../redux/profileSlice";
+import TweetsList from "./TweetsList";
 
 function Porfile(props) {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function Porfile(props) {
           );
       }
     }
-  }, [profile]);
+  }, []);
 
   return (
     user &&
@@ -152,7 +153,13 @@ function Porfile(props) {
 
               )}
               for(let tweet of userShow.tweets){ %> */}
-              {tweetsList.map((tweet) => (
+              <TweetsList
+                tweetsList={tweetsList}
+                user={user}
+                profile={profile}
+                showImg={true}
+              />
+              {/* {tweetsList.map((tweet) => (
                 <div
                   key={tweet.id}
                   className="container d-flex p-3 border-bottom"
@@ -173,12 +180,12 @@ function Porfile(props) {
                         @{profile.profilename}
                       </a>
                       <p className="txtMd usernameTweetText m-0">
-                        {/* <%= formatDistanceToNow(tweet.createdAt) %> */}
+                        {/* <%= formatDistanceToNow(tweet.createdAt) %> 
                       </p>
                     </div>
                     <p className="txtMd m-0">{tweet.content}</p>
                     <div className="d-flex">
-                      {/*  <% if (!tweet.likes.includes(user.id)) { %> */}
+                      {/*  <% if (!tweet.likes.includes(user.id)) { %> 
                       <form
                         className="d-flex justify-content-center align-items-center"
                         action="/tweet/<%= tweet.id %>/like"
@@ -197,11 +204,11 @@ function Porfile(props) {
                           />
                           <p className="d-inline">
                             {/* <!-- CONTADOR DE LIKES -->
-                          tweet.likes.length*/}
+                          tweet.likes.length
                           </p>
                         </button>
                       </form>
-                      {/*  {<% } else { %>/*}  */}
+                      {/*  {<% } else { %>/*}  
 
                       <form
                         className="d-flex justify-content-center align-items-center"
@@ -221,11 +228,11 @@ function Porfile(props) {
                           />
                           <p className="d-inline">
                             {/*   <!-- CONTADOR DE LIKES -->
-                          <%= tweet.likes.length %> */}
+                          <%= tweet.likes.length %> 
                           </p>
                         </button>
                       </form>
-                      {/* /* <% } %> <% if (userShow.id === user.id) { %> */}
+                      {/* /* <% } %> <% if (userShow.id === user.id) { %>
                       <form
                         className="d-flex justify-content-center align-items-center ms-auto"
                         action="/tweet/delete/<%= tweet.id %>?_method=DELETE"
@@ -242,13 +249,13 @@ function Porfile(props) {
                         >
                           <i
                             className="fas fa-trash" /* style="color: #dc3444" */
-                          ></i>
+              /*   ></i>
                         </button>
                       </form>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div> 
+              ))} */}
             </div>
             <Sidebar />
           </div>

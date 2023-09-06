@@ -6,8 +6,8 @@ import Following from "./miniComponents/Following";
 import Sidebar from "./partials/Sidebar";
 import SidebarLeft from "./partials/SidebarLeft";
 import axios from "axios";
-import { tweets, like } from "../redux/tweetsSlice";
-import { NavLink, Link } from "react-router-dom";
+import { tweets } from "../redux/tweetsSlice";
+import TweetsList from "./TweetsList";
 
 function Home() {
   const dispatch = useDispatch();
@@ -31,9 +31,6 @@ function Home() {
       getTweets();
     }
   }, []);
-  function handleLike(tweetId) {
-    dispatch(like({ tweetId, userId: user.id }));
-  }
 
   return (
     user &&
@@ -81,7 +78,9 @@ function Home() {
                 </form>
               </div>
 
-              {tweetsList.map((tweet) => (
+              <TweetsList tweetsList={tweetsList} user={user} showImg={false} />
+
+              {/*  {tweetsList.map((tweet) => (
                 <div
                   key={tweet._id}
                   className="divTweet container d-flex py-2 border-bottom"
@@ -109,7 +108,7 @@ function Home() {
                       </Link>
 
                       <p className="txtMd usernameTweetText m-0">
-                        {/* {tweet.createdAt} */}
+                        {/* {tweet.createdAt} 
                         1/11/2015
                       </p>
                     </div>
@@ -122,7 +121,7 @@ function Home() {
                         value="<%= user.id %>"
                       />
                       {/*   <h2>User id: {typeof user.id}</h2>
-                        <h2>Likes: {typeof String(tweet.likes)}</h2> */}
+                        <h2>Likes: {typeof String(tweet.likes)}</h2> 
 
                       {!tweet.likes.some((like) => String(like) === user.id) ? (
                         <img
@@ -144,12 +143,12 @@ function Home() {
 
                       {/*<p className="d-inline ms-2">
                             {/* CONTADOR DE LIKES  */}
-                      {/*  {tweet.likes.length} */}
-                      {/*  </p>
-                        </button> */}
+              {/*  {tweet.likes.length} */}
+              {/*  </p>
+                        </button> 
                     </form>
                     {/* <% } else { %> */}
-                    {/*   <form
+              {/*   <form
                           action="/tweet/<%= tweet.id %>/unLike"
                           method="post"
                         >
@@ -166,14 +165,14 @@ function Home() {
                             />
                             <p className="d-inline">
                               {/* -- CONTADOR DE LIKES  */}
-                    {/* { tweet.likes.length} */}
-                    {/*  </p> */}
-                    {/* </button> */}
-                    {/* </form> */}
-                    {/* <% } %> */}
+              {/* { tweet.likes.length} */}
+              {/*  </p> */}
+              {/* </button> */}
+              {/* </form> */}
+              {/* <% } %> 
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
             <Sidebar />
           </div>
